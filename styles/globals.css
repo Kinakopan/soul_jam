@@ -24,3 +24,8 @@ a {
     background: black;
   }
 }
+
+#active {
+  background-color:#A76FF4;
+  color:white;
+}
