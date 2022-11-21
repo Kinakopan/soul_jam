@@ -1,18 +1,18 @@
-
 import styled from 'styled-components';
-import Button from './Button';
-import AppText from './AppText';
-import Input from './Input';
-import ProfilePic from './ProfilePic'
+import Button from '../button/button';
+import AppText from '../apptext/AppText';
+import Input from '../input/Input';
+import ProfilePic from '../profilepic/ProfilePic';
 
 const FormCont = styled.div`
 display: flex;
 border-radius: 15px;
 width: 850px;
-background-color: #252525;
+background-color: white;
 flex-direction: column;
 padding: 20px;
 margin: 25px;
+box-shadow: 1px 3px 5px #D3D3D3;
 `
 const TopCont = styled.div`
 display: flex;

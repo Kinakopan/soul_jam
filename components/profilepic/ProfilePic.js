@@ -3,7 +3,7 @@ import styled from "styled-components";
 export default function ProfilePic({
     
     srcimg="https://www.fillmurray.com/200/200",
-    width="80px",
+    width="70px",
     s="0px",
 
 }){

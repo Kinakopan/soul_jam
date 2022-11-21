@@ -3,7 +3,8 @@ import styled from 'styled-components';
 const TextCont = styled.div`
 display:flex;
 justify-content: ${props=>props.jc};
-margin-top: 25px;
+margin-top: ${props=>props.mt};
+margin-left: ${props=>props.ml};
 margin-bottom: 10px;
 `
 const Text = styled.div`
@@ -21,11 +22,13 @@ export default function AppText({
     clr='#0A0908',
     wt='normal',
     placement='center',
-    s="0px"
+    s="0px",
+    marginleft='0px',
+    margintop='25px',
     
 }){
 
-    return <TextCont jc={placement}>
+    return <TextCont mt={margintop} ml={marginleft} jc={placement}>
         <Text shadow={s} fontsize={sz} color={clr} weight={wt}>
             {txt}
         </Text>
