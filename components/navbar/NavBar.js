@@ -1,6 +1,6 @@
 import styled from 'styled-components'
-import AppText from './AppText'
-import ProfilePic from './ProfilePic'
+import AppText from '../apptext/AppText'
+import ProfilePic from '../profilepic/ProfilePic'
 
 const NavCont = styled.div`
 display: flex;
