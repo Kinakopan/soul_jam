@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import styles from '../styles/Home.module.css'
 import SideBar from '../components/sidebar/sidebar';
 import NavBar from '../components/navbar/NavBar';
-import styled from 'styled-components';
 import FormCard from '../components/formcard/FormCard';
 import ToolTip from '../components/tooltip/ToolTip';
 import Follower from '../components/follower/follower';
