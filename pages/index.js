@@ -24,7 +24,7 @@ export default function Home() {
       <NavBar></NavBar>
       <SideBar></SideBar>
       <FormCard></FormCard>
-      <ToolTip></ToolTip>
+     
       <Follower></Follower>
     </BodyCont>
   )
