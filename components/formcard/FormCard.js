@@ -7,7 +7,7 @@ import ProfilePic from '../profilepic/ProfilePic';
 const FormCont = styled.div`
 display: flex;
 border-radius: 15px;
-width: 850px;
+width: 750px;
 background-color: white;
 flex-direction: column;
 padding: 20px;
