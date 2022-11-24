@@ -31,8 +31,13 @@ export default function Home() {
     <BodyCont>
       <SideBar></SideBar>
       <PostCont>
+
+        <PostCard/>
+        <PostCard/>
+
         <FormCard></FormCard>
         <PostCard></PostCard>
+
       </PostCont>
 
       

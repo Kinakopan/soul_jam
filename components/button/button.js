@@ -11,20 +11,22 @@ margin-bottom: 10px;
 const FormButton = styled.button`
 background-color: ${props=>props.background};
 width: ${props=>props.width};
-height: 60px;
+
+height: 40px;
 border-radius:16px;
 margin-right: 30px;
 color: #FFFFFF;
 font-family: 'Poppins', sans-serif;
 font-weight: ${props=>props.weight};
-font-size: 25px;
+
+font-size: 20px;
 filter: ${props=>props.shadow};
 border: 0px;
 `
 const ATag = styled.a`
 color: #FFFFFF;
 font-family: 'Lato', sans-serif;
-font-size: 30px;
+font-size: 20px;
 `
 
 export default function Button({
@@ -32,7 +34,8 @@ export default function Button({
     bg='#5CB8F7',    
     wt='normal',
     s="0px",
-    wd="180px",
+
+    wd="100px",
     onClick=()=>{},
     
 
