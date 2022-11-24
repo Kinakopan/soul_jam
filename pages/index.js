@@ -32,9 +32,6 @@ export default function Home() {
       <SideBar></SideBar>
       <PostCont>
 
-        <PostCard/>
-        <PostCard/>
-
         <FormCard></FormCard>
         <PostCard></PostCard>
 
