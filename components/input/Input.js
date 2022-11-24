@@ -9,7 +9,7 @@ const FormInput = styled.input`
 padding:10px;
 border:#B5B5B5 solid 1px;
 background:${props=>props.background};
-width: 700px;
+width: 100vh;
 border-radius: 10px;
 font-family: 'Lato', sans-serif;
 margin-left: 20px;
