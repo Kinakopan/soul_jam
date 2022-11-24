@@ -36,6 +36,7 @@ export default function Home() {
       <FormCard></FormCard>
       <PostCont>
         <PostCard/>
+        <PostCard/>
       </PostCont>
       
      
