@@ -20,23 +20,21 @@ const BodyCont = styled.div`
 `
 const PostCont = styled.div`
 display:flex;
-  flex-direction: column;
-  width: 100%;
-  height:100vh;
-  position: absolute;
-  top: 200px;
-  left: 340px;
+flex-direction: column;
+width: 100%;
+height:100vh;
+
 `
 
 export default function Home() {
   return (
     <BodyCont>
-      <NavBar></NavBar>
       <SideBar></SideBar>
-      <FormCard></FormCard>
       <PostCont>
-        <PostCard/>
+        <FormCard></FormCard>
+        <PostCard></PostCard>
       </PostCont>
+
       
      
       <Follower></Follower>
