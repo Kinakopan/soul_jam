@@ -7,6 +7,7 @@ import NavBar from '../components/navbar/NavBar';
 import FormCard from '../components/formcard/FormCard';
 import ToolTip from '../components/tooltip/ToolTip';
 import Follower from '../components/follower/follower';
+import PostCard from "../components/postcard/PostCard"
 
 const BodyCont = styled.div`
   background-color: #F3F3F3;
@@ -17,6 +18,15 @@ const BodyCont = styled.div`
   align-items: space-between;
   justify-content: space-between;
 `
+const PostCont = styled.div`
+display:flex;
+  flex-direction: column;
+  width: 100%;
+  height:100vh;
+  position: absolute;
+  top: 200px;
+  left: 340px;
+`
 
 export default function Home() {
   return (
@@ -24,6 +34,10 @@ export default function Home() {
       <NavBar></NavBar>
       <SideBar></SideBar>
       <FormCard></FormCard>
+      <PostCont>
+        <PostCard/>
+      </PostCont>
+      
      
       <Follower></Follower>
     </BodyCont>
