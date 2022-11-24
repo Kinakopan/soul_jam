@@ -11,13 +11,13 @@ margin-bottom: 10px;
 const FormButton = styled.button`
 background-color: ${props=>props.background};
 width: ${props=>props.width};
-height: 70px;
+height: 60px;
 border-radius:16px;
-margin: 10x;
+margin-right: 30px;
 color: #FFFFFF;
 font-family: 'Poppins', sans-serif;
 font-weight: ${props=>props.weight};
-font-size: 30px;
+font-size: 25px;
 filter: ${props=>props.shadow};
 border: 0px;
 `
@@ -32,7 +32,7 @@ export default function Button({
     bg='#5CB8F7',    
     wt='normal',
     s="0px",
-    wd="200px",
+    wd="180px",
     onClick=()=>{},
     
 
