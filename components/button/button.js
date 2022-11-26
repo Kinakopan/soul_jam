@@ -11,13 +11,13 @@ margin-bottom: 10px;
 const FormButton = styled.button`
 background-color: ${props=>props.background};
 width: ${props=>props.width};
-height: 70px;
+height: ${props=>props.height};
 border-radius:16px;
 margin: 10x;
 color: #FFFFFF;
 font-family: 'Poppins', sans-serif;
 font-weight: ${props=>props.weight};
-font-size: 30px;
+font-size: ${props=>props.size};
 filter: ${props=>props.shadow};
 border: 0px;
 `
@@ -33,6 +33,8 @@ export default function Button({
     wt='normal',
     s="0px",
     wd="200px",
+    ht="70px",
+    sz="30px",
     onClick=()=>{},
     
 
@@ -47,6 +49,6 @@ export default function Button({
 
     return <ButtonCont>
         <FormButton onMouseOver={MouseOver} onMouseOut={MouseOut} onClick={onClick}
-        background={bg} shadow={s} weight={wt} width={wd}>{labeltxt}</FormButton>
+        background={bg} shadow={s} weight={wt} width={wd} size={sz} height={ht}>{labeltxt}</FormButton>
     </ButtonCont>
 }
