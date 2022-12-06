@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import React, { useState } from 'react';
 
 const InputCont = styled.div`
 display:flex;
@@ -21,13 +22,23 @@ margin:10px;
 `
 
 export default function Input({
+  
   labeltxt='',
   inputtype='text',
   bg='#FFF'
 }){
+  
+  const [postText, setPostText] = useState("");
 
   return <InputCont>
     <FormLabel>{labeltxt}</FormLabel>
-    <FormInput placeholder="What's on your mind?" type={inputtype} background={bg} />
+    <FormInput 
+    placeholder="What's on your mind?" 
+    type={inputtype} 
+    background={bg} 
+    onChange={(event) => {
+      setPostText(event.target.value);
+  }}
+    />
   </InputCont>
 }

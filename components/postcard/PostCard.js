@@ -49,7 +49,9 @@ export default function PostCard({
             <NameCont>
                 <AppText txt="name"/>
             </NameCont>
-            <DotsMenu img={"/follow/dots.png"}/>
+            <DotsMenu img={"/follow/dots.png"}
+            
+            />
             
             
         </TopCont>
