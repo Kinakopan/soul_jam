@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import AppText from '../apptext/AppText';
 import ProfilePic from '../profilepic/ProfilePic';
+import BubbleMenu from './BubbleMenu';
+import { useState } from 'react';
 
 const FormCont = styled.div`
 display: flex;
@@ -24,6 +26,7 @@ position: relative;
 left: 20px;
 top: 10px;
 `
+
 const DotsMenu = styled.img`
   background-image: url(${props => props.img});
   background-size: 80%;
@@ -32,7 +35,7 @@ const DotsMenu = styled.img`
   width: 20px;
   padding: 10px;
   position: relative;
-    left: 600px;
+  left: 600px;
 
 `
 const BottomCont = styled.div`
@@ -42,6 +45,15 @@ display: flex;
 export default function PostCard({
 
 }){
+    const [menu, openMenu] = useState(false);
+    function handleMenu(){
+        if (menu === false){
+            openMenu(true)
+        }else if (menu === true){
+            openMenu(false)
+        }
+    }
+
     return <FormCont>
         <TopCont>
            
@@ -49,7 +61,11 @@ export default function PostCard({
             <NameCont>
                 <AppText txt="name"/>
             </NameCont>
-            <DotsMenu img={"/follow/dots.png"}/>
+            
+            <DotsMenu img={"/follow/dots.png"} onClick={handleMenu}/>
+            { menu ? 
+            <BubbleMenu
+            /> : null}
             
             
         </TopCont>
