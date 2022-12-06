@@ -31,7 +31,7 @@ export default function FormCard({
     return <FormCont>
         <TopCont>
             <ProfilePic></ProfilePic>
-            <Input></Input>
+            <Input/>
         </TopCont>
         <BottomCont>
             <Button labeltxt='Post'></Button>
