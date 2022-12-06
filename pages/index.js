@@ -7,7 +7,8 @@ import NavBar from '../components/navbar/NavBar';
 import FormCard from '../components/formcard/FormCard';
 import ToolTip from '../components/tooltip/ToolTip';
 import Follower from '../components/follower/follower';
-import PostCard from "../components/postcard/PostCard"
+import PostCard from "../components/postcard/PostCard";
+import React from 'react';
 
 const BodyCont = styled.div`
   background-color: #F3F3F3;
