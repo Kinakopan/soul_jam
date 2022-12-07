@@ -5,7 +5,7 @@ import {
     onAuthStateChanged,
     signInWithEmailAndPassword
  } from "firebase/auth";
-import { auth } from '../firebaseConfig';
+import { auth } from '../firebase.config';
 import Button from '../components/button/button';
 import { async } from '@firebase/util';
 import React from 'react';
