@@ -13,7 +13,7 @@ import styled from 'styled-components';
 import AppText from '../components/apptext/AppText';
 import ProfilePic from '../components/profilepic/ProfilePic';
 import { getDocs, collection} from 'firebase/firestore';
-import { db } from "../firebase-config";
+import { db } from "../firebaseConfig";
 import BubbleMenu from '../components/bubblemenu/BubbleMenu';
 
 const BodyCont = styled.div`

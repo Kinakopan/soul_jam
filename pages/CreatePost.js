@@ -5,7 +5,7 @@ import ProfilePic from '../components/profilepic/ProfilePic';
 import styled from 'styled-components';
 import Input from '../components/input/Input';
 import {addDoc, collection} from 'firebase/firestore';
-import { db, auth} from "../firebase-config";
+import { db, auth} from "../firebaseConfig";
 
 const FormCont = styled.div`
 display: flex;
