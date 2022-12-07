@@ -14,6 +14,7 @@ import AppText from '../components/apptext/AppText';
 import ProfilePic from '../components/profilepic/ProfilePic';
 import { getDocs, collection} from 'firebase/firestore';
 import { db } from "../firebase-config";
+import BubbleMenu from '../components/bubblemenu/BubbleMenu';
 
 const BodyCont = styled.div`
   background-color: #F3F3F3;
@@ -76,6 +77,15 @@ const DotsMenu = styled.img`
 
 
 export default function Home() {
+  const [menu, openMenu] = useState(false);
+  function handleMenu(){
+      if (menu === false){
+          openMenu(true)
+      }else if (menu === true){
+          openMenu(false)
+      }
+  }
+
   const [postLists, setPostList] = useState([]);
   const postsCollectionRef = collection(db, "posts");
 
@@ -102,6 +112,7 @@ export default function Home() {
             return (
             <TweetCont>
               <img src="/follow/dots.png"
+              onClick={handleMenu}
               style={{
                 width: "20px",
                 padding: "10px",
@@ -110,6 +121,9 @@ export default function Home() {
                 top: "55px"
               }}
               />
+              { menu ?
+            <BubbleMenu/> : null  
+            }
               <TopCont>
               <ProfilePic
               width="50px"
