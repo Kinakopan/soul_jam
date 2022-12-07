@@ -2,14 +2,15 @@
 import { useState, useEffect } from 'react';
 import { 
     signInWithPopup, 
-    GoogleAuthProvider, 
-    createUserWithEmailAndPassword, 
-    onAuthStateChanged } from "firebase/auth";
-import { auth } from '../firebase/firebase.config';
+    GoogleAuthProvider,
+    onAuthStateChanged,
+    signInWithEmailAndPassword
+ } from "firebase/auth";
+import { auth } from '../firebase.config';
 import Button from '../components/button/button';
 import { async } from '@firebase/util';
 import React from 'react';
-import axios from 'axios';
+import styled from 'styled-components';
 
 
 export default function Home() {

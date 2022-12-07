@@ -3,7 +3,8 @@ import {
     signInWithPopup, 
     GoogleAuthProvider,
     onAuthStateChanged,
-    signInWithEmailAndPassword
+    signInWithEmailAndPassword,
+    createUserWithEmailAndPassword
  } from "firebase/auth";
 import { auth } from '../firebase.config';
 import Button from '../components/button/button';
@@ -18,17 +19,33 @@ import Router, { useRouter } from "next/router";
 export default function Login() {
     
     const r = useRouter()
-    const [loginEmail, setLoginEmail]= useState("");
-    const [loginPassword, setLoginPassword] = useState("");
+ 
+    const [Email, setEmail]= useState("");
+    const [Password, setPassword] = useState("");
 
     const [user, setUser] = useState({});
 
-    const login = async () =>{
+   
+
+    const register = async () =>{
         r.push({pathname:'./Home'})
         try{
-            setLoginEmail("");
-            setLoginPassword("");
-            const user =await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
+            setEmail("");
+            setPassword("");
+            const user =await createUserWithEmailAndPassword(auth, Email,Password);
+            r.push({pathname:'./Home'})
+            console.log(user);
+        }
+        catch(error){
+            console.log(error.message);
+        }
+    }
+    const login= async () =>{
+        r.push({pathname:'./Home'})
+        try{
+            setEmail("");
+            setPassword("");
+            const user =await signInWithEmailAndPassword(auth, Email,Password);
             r.push({pathname:'./Home'})
             console.log(user);
         }
@@ -65,12 +82,13 @@ export default function Login() {
                     <FormCont onSubmit={handleSubmit}>
                         <label>Email</label>
                         <InputCont placeholder="type email here" 
-                        onChange={(event)=>{setLoginEmail(event.target.value)}}/>
+                        onChange={(event)=>{setEmail(event.target.value)}}/>
                         <label>Password</label>
-                        <InputCont placeholder="type password here" onChange={(event)=>{setLoginPassword(event.target.value)}} />
+                        <InputCont placeholder="type password here" onChange={(event)=>{setPassword(event.target.value)}} />
                         <ButtonCont>
                             <Button bg='#D3D3D3' labeltxt="Log in with Google" wd='220px' sz='10px' ht='50px' onClick={()=>GoogleSignin()}></Button>
                             <Button labeltxt="Login" wd='220px' sz='30px' ht='50px' onClick={login}></Button> 
+                            <Button labeltxt="Register" wd='220px' sz='30px' ht='50px' onClick={register}></Button> 
                         </ButtonCont>
 
                     </FormCont>
