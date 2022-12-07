@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import AppText from '../components/apptext/AppText';
 import Button from '../components/button/button';
 import ProfilePic from '../components/profilepic/ProfilePic';
 import styled from 'styled-components';
-import Input from '../components/input/Input';
 import {addDoc, collection} from 'firebase/firestore';
 import { db, auth} from "../firebase.config";
+
 
 const FormCont = styled.div`
 display: flex;
@@ -33,9 +32,13 @@ function CreatePost() {
 const [postText, setPostText] = useState("");
 
 const postsCollectionRef = collection(db, "posts");
-const createPost = async () => {
-    await addDoc(postsCollectionRef, {postText, author: {name: auth.currentUser.displayName, id: auth.currentUser.uid}} )
-}
+
+const makePost = async () => {
+    await addDoc(postsCollectionRef, 
+    {postText, 
+    author: {name: auth.currentUser.displayName, id: auth.currentUser.uid}} )
+    
+  }
 
   return (
     <FormCont>
@@ -52,7 +55,7 @@ const createPost = async () => {
         </TopCont>
       <BottomCont>
         <Button 
-        onClick={createPost}
+        onClick={makePost}
         labeltxt="submit"/>
         </BottomCont>
     </FormCont>
