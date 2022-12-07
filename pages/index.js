@@ -28,7 +28,7 @@ export default function Login() {
    
 
     const register = async () =>{
-        r.push({pathname:'./Home'})
+       
         try{
             setEmail("");
             setPassword("");
