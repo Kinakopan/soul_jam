@@ -128,7 +128,7 @@ export default function Home() {
               <ProfilePic
               width="50px"
               />
-              <h5>@{post.author.name}</h5>
+              <h5>@{post?.author?.name}</h5>
               </TopCont>
         
               
