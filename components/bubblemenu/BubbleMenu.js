@@ -21,7 +21,7 @@ user-select:none;
 export default function BubbleMenu(
 
     onEdit = () => {},
-    onReport = () => {}
+    onReport = () => {reportPost(post.id)}
 ){
 
     return ( 
