@@ -12,7 +12,7 @@ import CreatePost from './CreatePost';
 import styled from 'styled-components';
 import AppText from '../components/apptext/AppText';
 import ProfilePic from '../components/profilepic/ProfilePic';
-import { getDocs, collection} from 'firebase/firestore';
+import { getDocs, collection, deleteDoc, doc} from 'firebase/firestore';
 import { db } from "../firebase.config";
 import BubbleMenu from '../components/bubblemenu/BubbleMenu';
 
@@ -74,6 +74,12 @@ const DotsMenu = styled.img`
     left: 600px;
 
 `
+const Report = styled.img`
+  width: 20px;
+  padding: 10px;
+  display: flex;
+  justify-content: center
+`
 
 
 export default function Home() {
@@ -97,6 +103,13 @@ export default function Home() {
     };
     getPosts();
   });
+
+  const reportPost = async (id) =>{
+    const postDoc = doc(db, "posts", id);
+    await deleteDoc(postDoc);
+    alert("Post has been reported");
+  }
+
   return (
     <BodyCont>
       <SideBar></SideBar>
@@ -124,17 +137,21 @@ export default function Home() {
               { menu ?
             <BubbleMenu/> : null  
             }
+
               <TopCont>
               <ProfilePic
               width="50px"
               />
-              <h5>@{post?.author?.name}</h5>
+              <h5>@{post?.author?.name}</h5>            
               </TopCont>
         
               
               <p> 
               {post.postText}
               </p>
+              <Report onClick={() => {
+                reportPost(post.id);
+              }} src='./warning.png'/>
               </TweetCont>
         )})}
 
