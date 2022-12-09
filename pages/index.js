@@ -88,7 +88,7 @@ export default function Login() {
                         <ButtonCont>
                             <Button bg='#D3D3D3' labeltxt="Log in with Google" wd='220px' sz='10px' ht='50px' onClick={()=>GoogleSignin()}></Button>
                             <Button labeltxt="Login" wd='220px' sz='30px' ht='50px' onClick={login}></Button> 
-                            <Button labeltxt="Register" wd='220px' sz='30px' ht='50px' onClick={register}></Button> 
+                            <Button labeltxt="Register" wd='220px' sz='30px' ht='50px'bg='#A76FF4' onClick={register}></Button> 
                         </ButtonCont>
 
                     </FormCont>

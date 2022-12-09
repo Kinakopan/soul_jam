@@ -26,6 +26,13 @@ const BottomCont = styled.div`
 display: flex;
 justify-content: flex-end;
 `
+const TextCont = styled.textarea`
+font-family: 'Poppins', sans-serif;
+border: 1px solid #5cb8f6;
+border-radius: 10px;
+margin-left: 20px;
+width: 800px;
+`
 
 
 function CreatePost() {
@@ -45,7 +52,7 @@ const makePost = async () => {
         <TopCont>
             <ProfilePic></ProfilePic>
         
-        <textarea
+        <TextCont
         placeholder="whats on ur mind?"
         onChange={(event) => {
             setPostText(event.target.value);
