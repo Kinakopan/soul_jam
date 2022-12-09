@@ -48,6 +48,12 @@ color:black;
 const Title = styled.div`
 font-size:16px;
 `
+const Logo =  styled.p`
+margin-top: -20px;
+color: #A76FF4;
+font-family: 'Shrikhand', cursive;
+font-size: 25px;
+`
 export default function SideBar(router){
 
     const r = useRouter();
@@ -55,9 +61,11 @@ export default function SideBar(router){
     return(
          <Wrapper>
              <MenuUl>
+                <Logo>soulJam</Logo>
              {SideBarData.map((val,key)=>{
 
              return (
+                
              <MenuLi
              key={key}
              id={r.pathname == val.link ? "active" : ""}

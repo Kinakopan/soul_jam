@@ -25,6 +25,7 @@ const BodyCont = styled.div`
   height:100vh;
   align-items: space-between;
   justify-content: space-between;
+  font-family: 'Poppins', sans-serif;
 `
 const PostCont = styled.div`
 display:flex;
@@ -54,11 +55,12 @@ display: flex;
 const TweetCont = styled.div`
 display: flex;
 border-radius: 15px;
-width: 500px;
+width: 100%;
 background-color: white;
 flex-direction: column;
 padding: 5px;
 margin: 25px;
+margin-top:-10px;
 box-shadow: 1px 3px 5px #D3D3D3;
 position: relative;
 right: 5px;
@@ -85,6 +87,9 @@ const Report = styled.img`
 const IconCont = styled.div`
   display:flex;
   flex-direction:row;
+`
+const Text = styled.p`
+  margin-left: 20px;
 `
 
 export default function Home() {
@@ -147,11 +152,12 @@ export default function Home() {
               </TopCont>
         
               
-              <p> 
+              <Text> 
               {post.postText}
-              </p>
+              </Text>
 
               { editBox ? <EditPost/> : null}
+              
               <IconCont>
                 <Report onClick={() => {
                   reportPost(post.id);
