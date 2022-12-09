@@ -2,13 +2,14 @@ import { initializeApp } from "firebase/app";
 import {getAuth} from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
+
 const firebaseConfig = {
-  apiKey: "AIzaSyBcf-r1fqVWTvd8GUJBpngK1AXBsRrmayI",
-  authDomain: "souljam-55ff8.firebaseapp.com",
-  projectId: "souljam-55ff8",
-  storageBucket: "souljam-55ff8.appspot.com",
-  messagingSenderId: "62516204706",
-  appId: "1:62516204706:web:9b3efbf7f1246514bbb3fb"
+  apiKey: "AIzaSyCp4GXSiRaNFHvRYi8h5Jggocg0u0VCRjQ",
+  authDomain: "souljam-c0e66.firebaseapp.com",
+  projectId: "souljam-c0e66",
+  storageBucket: "souljam-c0e66.appspot.com",
+  messagingSenderId: "675653656470",
+  appId: "1:675653656470:web:566127204207b6b93f07b7"
 };
 
 const app = initializeApp(firebaseConfig);
