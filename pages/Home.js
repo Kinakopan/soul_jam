@@ -102,7 +102,7 @@ export default function Home() {
         data.docs.map((doc) => ({...doc.data(), id: doc.id })));
     };
     getPosts();
-  });
+  },[]);
 
   const reportPost = async (id) =>{
     const postDoc = doc(db, "posts", id);
