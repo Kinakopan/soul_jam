@@ -15,6 +15,7 @@ import ProfilePic from '../components/profilepic/ProfilePic';
 import { getDocs, collection, deleteDoc, doc} from 'firebase/firestore';
 import { db } from "../firebase.config";
 import BubbleMenu from '../components/bubblemenu/BubbleMenu';
+import EditPost from './EditPost';
 
 const BodyCont = styled.div`
   background-color: #F3F3F3;
@@ -81,19 +82,31 @@ const Report = styled.img`
   justify-content: center
 `
 
+const IconCont = styled.div`
+  display:flex;
+  flex-direction:row;
+`
 
 export default function Home() {
-  const [menu, openMenu] = useState(false);
-  function handleMenu(){
-      if (menu === false){
-          openMenu(true)
-      }else if (menu === true){
-          openMenu(false)
-      }
-  }
+  // const [menu, openMenu] = useState(false);
+  // function handleMenu(){
+  //     if (menu === false){
+  //         openMenu(true)
+  //     }else if (menu === true){
+  //         openMenu(false)
+  //     }
+  // }
 
   const [postLists, setPostList] = useState([]);
   const postsCollectionRef = collection(db, "posts");
+  const [editBox, setEditBox] = useState(false);
+  const openEditBox = () => {
+    if (editBox === true){
+      setEditBox(false)
+    }else {
+      setEditBox(true)
+    }
+  }
 
   useEffect(() => {
     const getPosts = async () => {
@@ -124,19 +137,7 @@ export default function Home() {
         {postLists.map((post) => {
             return (
             <TweetCont>
-              <img src="/follow/dots.png"
-              onClick={handleMenu}
-              style={{
-                width: "20px",
-                padding: "10px",
-                position: "relative",
-                left: "400px",
-                top: "55px"
-              }}
-              />
-              { menu ?
-            <BubbleMenu/> : null  
-            }
+              
 
               <TopCont>
               <ProfilePic
@@ -149,9 +150,16 @@ export default function Home() {
               <p> 
               {post.postText}
               </p>
-              <Report onClick={() => {
-                reportPost(post.id);
-              }} src='./warning.png'/>
+
+              { editBox ? <EditPost/> : null}
+              <IconCont>
+                <Report onClick={() => {
+                  reportPost(post.id);
+                }} src='./warning.png'/>
+                <Report onClick={() => {
+                  openEditBox();
+                }} src='./edit.png'/>
+              </IconCont>
               </TweetCont>
         )})}
 

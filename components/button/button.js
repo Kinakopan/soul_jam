@@ -35,7 +35,7 @@ export default function Button({
     wt='normal',
     s="0px",
 
-    wd="100px",
+    wd="100%",
     onClick=()=>{},
     
 
