@@ -19,9 +19,9 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ** 
 Firebase log in to see database:
-email:SoulJamapp@gmail.com
-password:SoulJam1234
-project name: Soljamfinal
-go to firestore to see database collection
+email:SoulJamapp@gmail.com,
+password:SoulJam1234,
+project name: Soljamfinal,
+*Go to firestore to see database collection
 
-** may have to refresh to see functionality
+** May have to refresh to see functionality for some things (i.e. edit functionality, & report)
