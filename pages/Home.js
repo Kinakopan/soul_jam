@@ -4,14 +4,6 @@ import { getDocs, collection, addDoc, deleteDoc, doc, updateDoc } from "firebase
 import { useRouter } from "next/router";
 import styled from "styled-components";
 import styles from "../styles/Home.module.css";
-// import {
-//   StyleSheet,
-//   Button,
-//   View,
-//   SafeAreaView,
-//   Alert,
-//   TouchableOpacity,
-// } from "react-native";
 import Head from "next/head";
 import Image from "next/image";
 import SideBar from "../components/sidebar/sidebar";
@@ -447,7 +439,7 @@ export default function Home(
           <FriendsUl>
             <FormCont>
             <div>
-              {followers.map((post) => {
+              {/* {followers.map((post) => {
                 return (
                   <TweetCont>
                     <TopCont>
@@ -479,7 +471,7 @@ export default function Home(
                     </FollowText>
                   </TweetCont>
                 );
-              })}
+              })} */}
             </div>
           </FormCont>
 
