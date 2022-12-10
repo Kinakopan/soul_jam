@@ -37,6 +37,7 @@ width: 800px;
 
 function CreatePost() {
 const [postText, setPostText] = useState("");
+const [LoginName, setLoginName] = useState("");
 
 const postsCollectionRef = collection(db, "posts");
 

@@ -1,23 +1,23 @@
 import React, { useEffect, useState } from "react";
-import { db } from "../firebase.config";
+import { db } from "../../firebase.config";
 import { getDocs, collection, addDoc, deleteDoc, doc, updateDoc } from "firebase/firestore";
 import { useRouter } from "next/router";
 import styled from "styled-components";
-import styles from "../styles/Home.module.css";
+import styles from "../../styles/Home.module.css";
 import Head from "next/head";
 import Image from "next/image";
-import SideBar from "../components/sidebar/sidebar";
-import NavBar from "../components/navbar/NavBar";
-import FormCard from "../components/formcard/FormCard";
-import ToolTip from "../components/tooltip/ToolTip";
-import PostCard from "../components/postcard/PostCard";
-import CreatePost from "./CreatePost";
-import CreateUsers from "./CreateUsers";
-import AppText from "../components/apptext/AppText";
-import ProfilePic from "../components/profilepic/ProfilePic";
-import BubbleMenu from "../components/bubblemenu/BubbleMenu";
-import EditPostCard from "../components/editpostcard/editpostcard";
-import Button from "../components/button/button";
+import SideBar from "../../components/sidebar/sidebar";
+import NavBar from "../../components/navbar/NavBar";
+import FormCard from "../../components/formcard/FormCard";
+import ToolTip from "../../components/tooltip/ToolTip";
+import PostCard from "../../components/postcard/PostCard";
+import CreatePost from "../CreatePost";
+import CreateUsers from "../CreateUsers";
+import AppText from "../../components/apptext/AppText";
+import ProfilePic from "../../components/profilepic/ProfilePic";
+import BubbleMenu from "../../components/bubblemenu/BubbleMenu";
+import EditPostCard from "../../components/editpostcard/editpostcard";
+import Button from "../../components/button/button";
 
 const BodyCont = styled.div`
   background-color: #f3f3f3;
@@ -323,20 +323,20 @@ export default function Home(
   const usersCollectionRef = collection(db, "users");
 
   //===unfollow function===
-  // const setFollowers = async () => {
-  //   try {
-  //     await addDoc(friends_listCollectionRef,
-  //     {userId, friendId, friendImg, friendName}),
-  //     r.push({ pathname: "./Home/[home].js" });
+  const adddFollowers = async () => {
+    try {
+      await addDoc(friends_listCollectionRef,
+      {userId, friendId, friendImg, friendName}),
+      r.push({ pathname: "./Home/[home].js" });
 
-  //   } catch (error) {
-  //     console.log(error.message);
-  //   }
-  // };
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
 
   useEffect(() => {
     const getFollowers = async () => {
-      const data = await getDocs(user_listCollectionRef);
+      const data = await getDocs(usersCollectionRef);
       setFollowers(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     };
     getFollowers();
@@ -389,7 +389,7 @@ export default function Home(
 
 
                   <FollowText
-                    onClick={() => setFollowers()}
+                    onClick={() => adddFollowers()}
                     >Follow
                   </FollowText>
 
@@ -443,14 +443,14 @@ export default function Home(
 
         <FriendsCont>
           <FriendsHeader>
-            <FriendsTitle>Friends</FriendsTitle>
+            <FriendsTitle>TESTTT</FriendsTitle>
             <FollowDotsMenu img={"/follow/dots.png"} />
           </FriendsHeader>
 
           <FriendsUl>
             <FormCont>
-            <div>
-              {/* {followers.map((post) => {
+            {/* <div>
+              {followers.map((post) => {
                 return (
                   <TweetCont>
                     <TopCont>
@@ -477,13 +477,13 @@ export default function Home(
                       />
                     </IconCont>
                     <FollowText
-                      onClick={() => addUsers()}
+                      onClick={() => setFollowers()}
                       >Follow
                     </FollowText>
                   </TweetCont>
                 );
-              })} */}
-            </div>
+              })}
+            </div> */}
           </FormCont>
 
 
