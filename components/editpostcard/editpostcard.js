@@ -7,6 +7,7 @@ width:80%;
 height:150px;
 background-color:white;
 box-shadow: 0px 3px 3px #D3D3D3;
+border-radius:5%;
 display:flex;
 flex-direction:column;
 justify-content:center;
@@ -20,6 +21,8 @@ border:#B5B5B5 solid 1px;
 background:${props=>props.background};
 border-radius: 10px;
 font-family: 'Lato', sans-serif;
+padding:5%;
+margin-top:3%;
 `
 
 const Header = styled.div`
@@ -34,10 +37,10 @@ export default function EditPostCard({onChange, onBttn}){
         <FormCont>
             <Header>Edit Post</Header>
             <FormInput
-            placeholder='Edit your post'
+            placeholder='Edit your post...'
             onChange={onChange}
             />
-            <Button labeltxt='Edit Post' onPress={onBttn}></Button>
+            <Button labeltxt='Edit' onClick={onBttn}></Button>
         </FormCont>
         </>
     )

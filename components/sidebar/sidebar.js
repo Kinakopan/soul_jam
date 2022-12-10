@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import React from "react";
 import {SideBarData} from './SideBarData';
 import { useRouter } from 'next/router';
+import styles from "../../styles/Home.module.css";
 
 const Wrapper = styled.div`
 display:flex;

@@ -6,7 +6,7 @@ export const SideBarData = [
     {
     title:"My Feed",
     icon: <FontAwesomeIcon icon={faMessage}/>,
-    link:"/",
+    link:"/Home",
     },
     {
     title:"Profile",
