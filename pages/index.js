@@ -11,21 +11,20 @@ import Button from "../components/button/button";
 import { async } from "@firebase/util";
 import React from "react";
 import styled from "styled-components";
-import Router, { useRouter } from "next/router";
+import  {useRouter } from "next/router";
 import {addDoc, collection} from 'firebase/firestore';
 import { v4 as uuidv4 } from 'uuid';
 import { ContactSupportOutlined } from "@mui/icons-material";
 
-
-
 export default function Login() {
   const r = useRouter();
+  const {home} = r.query
 
   const [LoginName, setLoginName] = useState("");
   const [Email, setEmail] = useState("");
   const [UserImg, setUserImg] = useState("");
   const [Password, setPassword] = useState("");
-  // const [UserId, setUserId] = useState("");
+  const [UserId, setUserId] = useState("");
 
   const [user, setUser] = useState({});
 
@@ -34,15 +33,12 @@ export default function Login() {
 
   const register = async () => {
     try {
-      // setEmail("");
-      // setPassword("");
-      // setUserId(uuidv4());
       const userId = uuidv4()
       console.log(userId)
       const user = await createUserWithEmailAndPassword(auth, Email, Password);
       await addDoc(user_listCollectionRef,
-      {userId,Email, LoginName, UserImg, Password}),
-      r.push({ pathname: "./Home" });
+      {userId, Email, LoginName, UserImg, Password}),
+      r.push({ pathname: "./Home/[home].js" });
 
       console.log(user);
     } catch (error) {
@@ -50,12 +46,13 @@ export default function Login() {
     }
   };
   const login = async () => {
-    r.push({ pathname: "./Home" });
+    console.log(home)
+    r.push({ pathname: "./Home/${userId}"});
     try {
       setEmail("");
       setPassword("");
       const user = await signInWithEmailAndPassword(auth, Email, Password);
-      r.push({ pathname: "./Home" });
+      r.push({ pathname: "./Home/[home].js" });
       console.log(user);
     } catch (error) {
       console.log(error.message);
