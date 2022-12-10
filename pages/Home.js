@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { db } from "../firebase.config";
-import { getDocs, collection, addDoc, deleteDoc, doc } from "firebase/firestore";
+import { getDocs, collection, addDoc, deleteDoc, doc, updateDoc } from "firebase/firestore";
 import { useRouter } from "next/router";
 import styled from "styled-components";
 import styles from "../styles/Home.module.css";
@@ -24,7 +24,8 @@ import CreateUsers from "./CreateUsers";
 import AppText from "../components/apptext/AppText";
 import ProfilePic from "../components/profilepic/ProfilePic";
 import BubbleMenu from "../components/bubblemenu/BubbleMenu";
-import EditPost from "./EditPost";
+import EditPostCard from "../components/editpostcard/editpostcard";
+import Button from "../components/button/button";
 
 const BodyCont = styled.div`
   background-color: #f3f3f3;
@@ -65,7 +66,7 @@ const TweetCont = styled.div`
   width: 100%;
   background-color: white;
   flex-direction: column;
-  padding: 5px;
+  padding: 4%;
   margin: 25px;
   margin-top: -10px;
   box-shadow: 1px 3px 5px #d3d3d3;
@@ -290,7 +291,7 @@ export default function Home(
   //     }
   // }
 
-  const [postLists, setPostList] = useState([]);
+  const [postLists, setPostList] = useState(null);
   const postsCollectionRef = collection(db, "posts");
   const [editBox, setEditBox] = useState(false);
   const openEditBox = () => {
@@ -300,6 +301,16 @@ export default function Home(
       setEditBox(true);
     }
   };
+
+
+  const [postTxt, setPostText] = useState("");
+
+  const UpdatePost = async(id) => {
+    const userRef = doc(db, 'posts', id);
+    updateDoc(userRef, { 
+        postText: postTxt,
+      }, { merge: true }).then(res => setPostList(null));
+  }
 
   useEffect(() => {
     const getPosts = async () => {
@@ -336,7 +347,8 @@ export default function Home(
 
         <FormCont>
           <div id="PostDisplay">
-            {postLists.map((post) => {
+          {postLists !== null &&
+            postLists.map((post) => {
               return (
                 <TweetCont>
                   <TopCont>
@@ -346,7 +358,16 @@ export default function Home(
 
                   <Text>{post.postText}</Text>
 
-                  {editBox ? <EditPost /> : null}
+                  {editBox ? 
+                  <>
+                    <EditPostCard
+                    onChange={(txt)=>{
+                      setPostText(txt.target.value)
+                    }}
+                    onBttn={() => UpdatePost(post.id)}
+                    />
+                    </>
+                    : null}
 
                   <IconCont>
                     <Report
@@ -357,8 +378,8 @@ export default function Home(
                     />
                     <Report
                       onClick={() => {
-                        openEditBox();
-                      }}
+                        openEditBox()}
+                      }
                       src="./edit.png"
                     />
                   </IconCont>

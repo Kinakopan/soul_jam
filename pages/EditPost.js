@@ -12,7 +12,7 @@ font-size:20px;
 const Wrapper = styled.div`
 display:flex;
 justify-content:center;
-margin:3%;
+margin:5%;
 `
 
 
