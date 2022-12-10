@@ -41,33 +41,33 @@ const [postText, setPostText] = useState("");
 const postsCollectionRef = collection(db, "posts");
 
 const makePost = async () => {
-    await addDoc(postsCollectionRef, 
-    {postText, 
+    await addDoc(postsCollectionRef,
+    {postText,
     author: {name: auth.currentUser.displayName, id: auth.currentUser.uid}} )
-    
+
   }
 
   return (
     <FormCont>
         <TopCont>
             <ProfilePic></ProfilePic>
-        
+
         <TextCont
         placeholder="whats on ur mind?"
         onChange={(event) => {
             setPostText(event.target.value);
         }}
         />
-        
+
         </TopCont>
       <BottomCont>
-        <Button 
+        <Button
         onClick={makePost}
         labeltxt="submit"/>
         </BottomCont>
     </FormCont>
-      
-   
+
+
   );
 }
 

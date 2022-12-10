@@ -23,6 +23,7 @@ export default function Login() {
       setLoginName("");
       setLoginEmail("");
       setLoginPassword("");
+      console.log(loginName);
       const user = await signInWithEmailAndPassword(
         auth,
         loginEmail,
@@ -59,6 +60,13 @@ export default function Login() {
       <RightSide>
         <Subhead>Sign In</Subhead>
         <FormCont onSubmit={handleSubmit}>
+          <label>Name</label>
+          <InputCont
+            placeholder="type your user name here"
+            onChange={(event) => {
+              setLoginName(event.target.value);
+            }}
+          />
           <label>Email</label>
           <InputCont
             placeholder="type email here"

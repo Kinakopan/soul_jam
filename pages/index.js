@@ -6,27 +6,44 @@ import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
 } from "firebase/auth";
-import { auth } from "../firebase.config";
+import { db, auth } from "../firebase.config";
 import Button from "../components/button/button";
 import { async } from "@firebase/util";
 import React from "react";
 import styled from "styled-components";
 import Router, { useRouter } from "next/router";
+import {addDoc, collection} from 'firebase/firestore';
+import { v4 as uuidv4 } from 'uuid';
+import { ContactSupportOutlined } from "@mui/icons-material";
+
+
 
 export default function Login() {
   const r = useRouter();
 
+  const [LoginName, setLoginName] = useState("");
   const [Email, setEmail] = useState("");
+  const [UserImg, setUserImg] = useState("");
   const [Password, setPassword] = useState("");
+  // const [UserId, setUserId] = useState("");
 
   const [user, setUser] = useState({});
 
+
+  const user_listCollectionRef = collection(db, "user_list");
+
   const register = async () => {
     try {
-      setEmail("");
-      setPassword("");
+      // setEmail("");
+      // setPassword("");
+      // setUserId(uuidv4());
+      const userId = uuidv4()
+      console.log(userId)
       const user = await createUserWithEmailAndPassword(auth, Email, Password);
+      await addDoc(user_listCollectionRef,
+      {userId,Email, LoginName, UserImg, Password}),
       r.push({ pathname: "./Home" });
+
       console.log(user);
     } catch (error) {
       console.log(error.message);
@@ -70,6 +87,14 @@ export default function Login() {
       <RightSide>
         <Subhead>Sign In</Subhead>
         <FormCont onSubmit={handleSubmit}>
+          <label>Name</label>
+            <InputCont
+              placeholder="type your user name here"
+              onChange={(event) => {
+                setLoginName(event.target.value);
+                // console.log(uuidv4())
+              }}
+          />
           <label>Email</label>
           <InputCont
             placeholder="type email here"
@@ -84,6 +109,15 @@ export default function Login() {
               setPassword(event.target.value);
             }}
           />
+
+          <label>Image url</label>
+          <InputCont
+            placeholder="upload your profile picture URL here"
+            onChange={(event) => {
+              setUserImg(event.target.value);
+            }}
+          />
+
           <ButtonCont>
             <Button
               bg="#D3D3D3"
