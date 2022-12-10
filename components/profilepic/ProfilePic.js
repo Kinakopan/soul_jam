@@ -1,19 +1,19 @@
 import styled from "styled-components";
 
 export default function ProfilePic({
-    
-    srcimg="https://www.fillmurray.com/200/200",
+
+    srcimg="http://placekitten.com/g/200/300",
     width="70px",
     s="0px",
 
 }){
 
     return <ProfileCont>
-        
+
         <Picture shadow={s} w={width} src={srcimg}/>
- 
+
     </ProfileCont>
-    
+
 }
 
 const ProfileCont = styled.div`

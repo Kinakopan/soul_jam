@@ -316,16 +316,16 @@ export default function Home(
   };
 
   //===define follow===
-  const usersCollectionRef = collection(db, "users");
   const [followers, setFollowers] = useState(null);
+  const usersCollectionRef = collection(db, "users");
 
   //===unfollow function===
   useEffect(() => {
-    const deleteUsers = async () => {
+    const getFollowers = async () => {
       const data = await getDocs(usersCollectionRef);
       setFollowers(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     };
-    deleteUsers();
+    getFollowers();
   }, []);
 
   return (
@@ -362,15 +362,20 @@ export default function Home(
                       src="./edit.png"
                     />
                   </IconCont>
+
+
+                  <FollowText
+                    onClick={() => addUsers()}
+                    >Follow
+                  </FollowText>
+
+
                 </TweetCont>
               );
             })}
           </div>
         </FormCont>
       </PostCont>
-
-
-
 
 
 
@@ -382,7 +387,7 @@ export default function Home(
           <ProfImg img={"/follow/user4.jpg"} />
         </Profile>
 
-        {/* <CreateUsers/> */}
+        <CreateUsers/>
 
         <SearchBar>
           <SearchIcon img={"/follow/search.png"} />
@@ -396,31 +401,16 @@ export default function Home(
             <StoriesLi>
               <StoriesImg img={"/follow/user1.jpg"} />
               <StoriesUsername>John</StoriesUsername>
-              <FollowText
-                // onClick={() => followPress(postLists.author.id)}
-                // onClick={() => addUsers()}
-                >Follow
-              </FollowText>
             </StoriesLi>
 
             <StoriesLi>
               <StoriesImg img={"/follow/user2.jpg"} />
               <StoriesUsername>Sarah</StoriesUsername>
-              <FollowText
-                // onClick={() => followPress(postLists.author.id)}
-                // onClick={() => addUsers()}
-                >Follow
-              </FollowText>
             </StoriesLi>
 
             <StoriesLi>
               <StoriesImg img={"/follow/user3.jpg"} />
               <StoriesUsername>Adam</StoriesUsername>
-              <FollowText
-                // onClick={() => followPress(postLists.author.id)}
-                // onClick={() => addUsers()}
-                >Follow
-              </FollowText>
             </StoriesLi>
           </StoriesUl>
 
@@ -434,6 +424,46 @@ export default function Home(
           </FriendsHeader>
 
           <FriendsUl>
+            <FormCont>
+            <div>
+              {followers.map((post) => {
+                return (
+                  <TweetCont>
+                    <TopCont>
+                      <ProfilePic width="50px" />
+                      <h5>@{post?.author?.name}</h5>
+                    </TopCont>
+
+                    <Text>{post.postText}</Text>
+
+                    {editBox ? <EditPost /> : null}
+
+                    <IconCont>
+                      <Report
+                        onClick={() => {
+                          reportPost(post.id);
+                        }}
+                        src="./warning.png"
+                      />
+                      <Report
+                        onClick={() => {
+                          openEditBox();
+                        }}
+                        src="./edit.png"
+                      />
+                    </IconCont>
+                    <FollowText
+                      onClick={() => addUsers()}
+                      >Follow
+                    </FollowText>
+                  </TweetCont>
+                );
+              })}
+            </div>
+          </FormCont>
+
+
+
             <FriendsLi>
               <FriendsImg img={"/follow/user7.jpg"} />
               <FriendsName>Friend1</FriendsName>
