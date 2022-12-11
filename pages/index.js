@@ -28,31 +28,27 @@ export default function Login() {
 
   const [user, setUser] = useState({});
 
-
   const user_listCollectionRef = collection(db, "user_list");
 
   const register = async () => {
     try {
       const userId = uuidv4()
-      console.log(userId)
-      const user = await createUserWithEmailAndPassword(auth, Email, Password);
+      // r.push({ pathname: `./Home/${userId}`});
+      // const user = await createUserWithEmailAndPassword(auth, Email, Password);
+
       await addDoc(user_listCollectionRef,
       {userId, Email, LoginName, UserImg, Password}),
-      r.push({ pathname: "./Home/[home].js" });
+      r.push({ pathname: `./Home/${userId}`});
 
-      console.log(user);
     } catch (error) {
       console.log(error.message);
     }
   };
   const login = async () => {
-    console.log(home)
-    r.push({ pathname: "./Home/${userId}"});
     try {
-      setEmail("");
-      setPassword("");
       const user = await signInWithEmailAndPassword(auth, Email, Password);
-      r.push({ pathname: "./Home/[home].js" });
+      const userId = auth.currentUser.uid
+      r.push({ pathname: `./Home/${userId}`});
       console.log(user);
     } catch (error) {
       console.log(error.message);
