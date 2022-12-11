@@ -65,6 +65,8 @@ export default function Login() {
 
             if(dbEmail == Email && dbPassword == Password ) {
               r.push({ pathname: `./Home/${dbUserId}`});
+            } else {
+              alert("Incorrect email or password");
             }
           });
         // };
@@ -77,14 +79,13 @@ export default function Login() {
         // };
       };
       getUsersInfo();
-      alert("Incorrecty email or password");
       // console.log("alert")
       // console.log(user);
       // r.push({ pathname: "./Home/[home].js" });
 
     } catch (error) {
       console.log(error.message);
-      alert("user doesn't exist");
+      // alert("user doesn't exist");
     }
   };
 
