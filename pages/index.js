@@ -12,7 +12,7 @@ import { async } from "@firebase/util";
 import React from "react";
 import styled from "styled-components";
 import  {useRouter } from "next/router";
-import {addDoc, collection} from 'firebase/firestore';
+import {addDoc, collection, query, where, getDocs} from 'firebase/firestore';
 import { v4 as uuidv4 } from 'uuid';
 import { ContactSupportOutlined } from "@mui/icons-material";
 
@@ -24,38 +24,67 @@ export default function Login() {
   const [Email, setEmail] = useState("");
   const [UserImg, setUserImg] = useState("");
   const [Password, setPassword] = useState("");
-  const [UserId, setUserId] = useState("");
+  const [userId, setUserId] = useState("");
 
   const [user, setUser] = useState({});
-
 
   const user_listCollectionRef = collection(db, "user_list");
 
   const register = async () => {
     try {
       const userId = uuidv4()
-      console.log(userId)
-      const user = await createUserWithEmailAndPassword(auth, Email, Password);
+      // r.push({ pathname: `./Home/${userId}`});
+      // const user = await createUserWithEmailAndPassword(auth, Email, Password);
+
       await addDoc(user_listCollectionRef,
       {userId, Email, LoginName, UserImg, Password}),
-      r.push({ pathname: "./Home/[home].js" });
+      r.push({ pathname: `./Home/${userId}`});
 
-      console.log(user);
     } catch (error) {
       console.log(error.message);
     }
   };
   const login = async () => {
-    console.log(home)
-    r.push({ pathname: "./Home/${userId}"});
     try {
-      setEmail("");
-      setPassword("");
-      const user = await signInWithEmailAndPassword(auth, Email, Password);
-      r.push({ pathname: "./Home/[home].js" });
-      console.log(user);
+      // const user = await signInWithEmailAndPassword(auth, Email, Password);
+      // const userId = auth.currentUser.uid
+      // if(user){
+      //   return r.push({ pathname: `./Home/${userId}`})
+      // }
+
+      //if google user doesn't exist
+      // if(!user) {
+        const e = query(collection(db, "user_list"), where("Email", "==", Email, "Password", "==", Password ));
+        // const p = query(collection(db, "user_list"), where("Password", "==", Password));
+        const getUsersInfo = async () => {
+          const UserInfo = await getDocs(e);
+          UserInfo.forEach((doc) => {
+            const dbUserId = doc._document.data.value.mapValue.fields.userId.stringValue;
+            const dbEmail = doc._document.data.value.mapValue.fields.Email.stringValue;
+            const dbPassword = doc._document.data.value.mapValue.fields.Password.stringValue;
+
+            if(dbEmail == Email && dbPassword == Password ) {
+              r.push({ pathname: `./Home/${dbUserId}`});
+            }
+          });
+        // };
+        // const getUsersPassword = async () => {
+        //   const Password = await getDocs(p);
+        //   Password.forEach((doc) => {
+        //     const Password = doc._document.data.value.mapValue.fields.LoginName.stringValue;
+        //     getUsersPassword(Password);
+        //   });
+        // };
+      };
+      getUsersInfo();
+      alert("Incorrecty email or password");
+      // console.log("alert")
+      // console.log(user);
+      // r.push({ pathname: "./Home/[home].js" });
+
     } catch (error) {
       console.log(error.message);
+      alert("user doesn't exist");
     }
   };
 
@@ -65,10 +94,12 @@ export default function Login() {
 
   const GoogleSignin = async () => {
     const provider = new GoogleAuthProvider();
-
     const authorization = auth;
     const result = await signInWithPopup(authorization, provider);
     console.log(result);
+    const userId = auth.currentUser.uid
+    r.push({ pathname: `./Home/${userId}`})
+
   };
 
   const handleSubmit = (event) => {

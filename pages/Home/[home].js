@@ -284,7 +284,7 @@ export default function Home(
   // }
 
   const [postLists, setPostList] = useState(null);
-  const postsCollectionRef = collection(db, "posts");
+  const posts_listCollectionRef = collection(db, "posts_list");
   const [editBox, setEditBox] = useState(false);
   const openEditBox = () => {
     if (editBox === true) {
@@ -306,8 +306,9 @@ export default function Home(
 
   useEffect(() => {
     const getPosts = async () => {
-      const data = await getDocs(postsCollectionRef);
+      const data = await getDocs(posts_listCollectionRef)
       setPostList(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+      console.log(postLists)
     };
     getPosts();
   }, []);
@@ -323,16 +324,16 @@ export default function Home(
   const usersCollectionRef = collection(db, "users");
 
   //===unfollow function===
-  const adddFollowers = async () => {
-    try {
-      await addDoc(friends_listCollectionRef,
-      {userId, friendId, friendImg, friendName}),
-      r.push({ pathname: "./Home/[home].js" });
+  // const adddFollowers = async () => {
+  //   try {
+  //     await addDoc(friends_listCollectionRef,
+  //     {userId, friendId, friendImg, friendName}),
+  //     r.push({ pathname: "./Home/[home].js" });
 
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
+  //   } catch (error) {
+  //     console.log(error.message);
+  //   }
+  // };
 
   useEffect(() => {
     const getFollowers = async () => {
@@ -356,10 +357,10 @@ export default function Home(
                 <TweetCont>
                   <TopCont>
                     <ProfilePic width="50px" />
-                    <h5>@{post?.author?.name}</h5>
+                    <h5>@{post?.author?.LoginName}</h5>
                   </TopCont>
 
-                  <Text>{post.postText}</Text>
+                  <Text>{post.PostText}</Text>
 
                   {editBox ?
                   <>
