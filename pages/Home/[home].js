@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { db } from "../../firebase.config";
-import { getDocs, collection, addDoc, deleteDoc, doc, updateDoc } from "firebase/firestore";
-import { useRouter } from "next/router";
+import  {useRouter } from "next/router";
+import { db, auth } from "../../firebase.config";
+import { doc, getDocs, addDoc, deleteDoc, updateDoc, collection, query, where } from "firebase/firestore";
 import styled from "styled-components";
 import styles from "../../styles/Home.module.css";
 import Head from "next/head";
@@ -55,7 +55,7 @@ const TopCont = styled.div`
 const TweetCont = styled.div`
   display: flex;
   border-radius: 15px;
-  width: 100%;
+  width: 80%;
   background-color: white;
   flex-direction: column;
   padding: 4%;
@@ -269,6 +269,7 @@ const Text = styled.p`
     border-radius: 50%;
   `;
   const LastLogin = styled.span``;
+
 //=== until here=== follow unfollow ===
 
 export default function Home(
@@ -294,9 +295,7 @@ export default function Home(
     }
   };
 
-
   const [postTxt, setPostText] = useState("");
-
   const UpdatePost = async(id) => {
     const userRef = doc(db, 'posts', id);
     updateDoc(userRef, {
@@ -318,6 +317,49 @@ export default function Home(
     await deleteDoc(postDoc);
     alert("Post has been reported");
   };
+
+  //===user's name===
+  // const [userPath, setuserPath] = useState({});
+  // const ShowLocation = ()=> {
+    // const location = useLocation();
+    // const currentLocation = new URL(window.location.href);
+    // setPath(location);
+  // }
+  // console.log(currentLocation.pathname);
+  // console.log(currentLocation);
+  // console.log(location);
+
+  // const userId = auth.currentUser.uid
+
+  // const [user, setUser] = useState({});
+  // const r = useRouter();
+
+  // React.useEffect(() => {
+  //   onAuthStateChanged(auth, (currentUser) => setUser(currentUser));
+  // }, []);
+
+  // const user_listCollectionRef = collection(db, "user_list");
+
+
+
+
+  // const [UserName, setUserName] = useState("");
+  // const router = useRouter();
+  // const userId = router.query.home
+  // console.log(router.query.home);
+  // console.log(userId);
+
+
+
+
+  // const getPosts = async () => {
+  //   const q = query(collection(db, "user_list"), where("userId", "==", userId));
+  //   const LoginName = await getDocs(q);
+  //   LoginName.forEach((doc) => {
+  //     const user = doc._document.data.value.mapValue.fields.LoginName.stringValue;
+  //     setUserName(user);
+  //   });
+  // };
 
   //===define follow===
   const [followers, setFollowers] = useState(null);
@@ -408,11 +450,11 @@ export default function Home(
       {/* follow unfollow */}
       <Wrapper>
         <Profile>
-          <ProfUserName>User's Name</ProfUserName>
+          <ProfUserName>UserName</ProfUserName>
           <ProfImg img={"/follow/user4.jpg"} />
         </Profile>
 
-        <CreateUsers/>
+        {/* <CreateUsers/> */}
 
         <SearchBar>
           <SearchIcon img={"/follow/search.png"} />
