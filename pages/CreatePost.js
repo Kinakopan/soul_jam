@@ -81,7 +81,6 @@ const makePost = async () => {
       LoginName.forEach((doc) => {
       const user = doc._document.data.value.mapValue.fields.LoginName.stringValue;
       setUserName(user);
-
     });
   };
   getPosts();

@@ -26,3 +26,24 @@ width: ${props=>props.w};
 filter: ${props=>props.shadow};
 border-radius: 50%;
 `
+
+
+
+
+
+// useEffect(() => {
+//   const test = async () => {
+//   const userId = router.query.home
+//   if(UserName){
+//    await addDoc(user_listCollectionRef,
+//   {PostText,
+//   author: {LoginName: UserName, UserId: userId, PostId: postId}} )
+//   }
+//   };test()},[UserName]);
+
+//   getPosts();
+//   if (!UserName == ""){
+//     console.log(UserName)
+//     await addDoc(user_listCollectionRef,
+//   {LoginName: UserName, UserId: userId, UserImg:ProfileImg} )
+//   }
